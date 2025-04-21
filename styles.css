@@ -202,7 +202,7 @@ body {
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 15; /* Above orbital line, below main nodes */
+    z-index: 25; /* Higher than hovered parent node */
 }
 
 .sub-satellite-container.visible {
@@ -227,14 +227,14 @@ body {
     font-size: 10px; /* Smaller font */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     transform: translate(-50%, -50%); /* Center on calculated position */
-    z-index: 16;
+    z-index: 26; /* Higher than container */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .sub-satellite:hover {
     transform: translate(-50%, -50%) scale(1.1);
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 17;
+    z-index: 27; /* Highest */
 }
 
 /* Specific sub-satellite colors (matching parent border) */
