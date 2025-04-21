@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 subSatellites.forEach((sub, index) => {
                     const totalSubs = subSatellites.length;
-                    // Use the potentially paused angle
                     const currentAngle = animationState[stateKey].angle; 
                     const angle = currentAngle + (index * (2 * Math.PI / totalSubs));
                     
@@ -92,7 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 animationState[stateKey].frameId = requestAnimationFrame(animate);
             };
-            animate(); // Start the loop
+            // Add a small delay before starting the animation loop
+            // to give CSS animations a chance to apply initial position.
+            setTimeout(() => {
+                 // Ensure the animation hasn't been cancelled while waiting
+                if (container.classList.contains('visible')) { 
+                    animate(); // Start the loop after the delay
+                }
+            }, 50); // 50ms delay
         };
 
         const stopAnimation = () => {
