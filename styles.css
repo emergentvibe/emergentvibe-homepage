@@ -191,4 +191,61 @@ body {
         width: 280px;
         height: 280px;
     }
+}
+
+/* Sub-satellite Styles */
+.sub-satellite-container {
+    position: absolute;
+    width: 1px; /* Minimal size, position controlled by JS */
+    height: 1px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 15; /* Above orbital line, below main nodes */
+}
+
+.sub-satellite-container.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.sub-satellite {
+    position: absolute; /* Positioned by JS */
+    width: 60px; /* Smaller than main satellites */
+    height: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #555;
+    color: #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5px;
+    font-size: 10px; /* Smaller font */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transform: translate(-50%, -50%); /* Center on calculated position */
+    z-index: 16;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sub-satellite:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 17;
+}
+
+/* Specific sub-satellite colors (matching parent border) */
+[data-parent-selector=".research-node"] .sub-satellite {
+    border-color: #9b59b6;
+}
+[data-parent-selector=".dev-node"] .sub-satellite {
+    border-color: #2ecc71;
+}
+
+/* Pause parent orbit when hovered */
+.node.paused {
+    animation-play-state: paused !important; /* Use !important to override base animation */
 } 
