@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hoverState = {}; // Tracks hover over parent/sub-container pairs
     const animationState = {}; // Stores animation frame IDs
     const HIDE_DELAY = 150; // ms delay before hiding on mouseleave
-    const SUB_ORBIT_RADIUS = 75; // Pixels for sub-satellite orbit radius
+    const SUB_ORBIT_RADIUS = 95; // Increased Pixels for sub-satellite orbit radius
     const SUB_ORBIT_SPEED = 0.005; // Radians per frame - Reduced speed
 
     subContainers.forEach(container => {

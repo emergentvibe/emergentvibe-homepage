@@ -46,8 +46,8 @@ body {
 }
 
 .central-node {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     z-index: 10;
     background: #fff;
     border: 5px solid #9b59b6;
@@ -62,8 +62,8 @@ body {
 }
 
 .satellite-node {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     background: rgba(255, 255, 255, 0.9);
     border: 3px solid #333;
     color: #333;
@@ -72,18 +72,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 8px;
 }
 
 .node-content {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     font-family: 'Special Elite', cursive; /* Typewriter font for all nodes */
 }
 
 /* Specific fonts for each node */
 .art-node .node-content {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .research-node .node-content {
@@ -91,7 +91,7 @@ body {
 }
 
 .dev-node .node-content {
-    font-size: 15px; /* Smaller font size for code node */
+    font-size: 16px;
 }
 
 /* Node Positions and Animations */
@@ -117,19 +117,24 @@ body {
 
 @keyframes orbit {
     0% {
-        transform: translate(-50%, -50%) rotate(0deg) translateX(200px) rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg) translateX(240px) rotate(0deg);
     }
     100% {
-        transform: translate(-50%, -50%) rotate(360deg) translateX(200px) rotate(-360deg);
+        transform: translate(-50%, -50%) rotate(360deg) translateX(240px) rotate(-360deg);
     }
 }
 
 /* Hover effects */
 .satellite-node:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
-    animation-play-state: paused;
     z-index: 20;
+}
+
+/* Scale up text content on satellite hover */
+.satellite-node:hover .node-content {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
 }
 
 .art-node:hover {
@@ -151,8 +156,8 @@ body {
 .graph::before {
     content: "";
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: 480px;
+    height: 480px;
     border: 1px dashed rgba(155, 89, 182, 0.5);
     border-radius: 50%;
     pointer-events: none;
@@ -161,35 +166,39 @@ body {
 /* For mobile responsiveness */
 @media (max-width: 768px) {
     .central-node {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
     }
     
     .satellite-node {
-        width: 70px;
-        height: 70px;
+        width: 90px;
+        height: 90px;
     }
     
     .node-content {
-        font-size: 14px;
+        font-size: 12px;
     }
     
     .art-node .node-content {
-        font-size: 20px;
+        font-size: 14px;
+    }
+    
+    .dev-node .node-content {
+        font-size: 11px;
     }
     
     @keyframes orbit {
         0% {
-            transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg) translateX(170px) rotate(0deg);
         }
         100% {
-            transform: translate(-50%, -50%) rotate(360deg) translateX(140px) rotate(-360deg);
+            transform: translate(-50%, -50%) rotate(360deg) translateX(170px) rotate(-360deg);
         }
     }
     
     .graph::before {
-        width: 280px;
-        height: 280px;
+        width: 340px;
+        height: 340px;
     }
 }
 
@@ -213,8 +222,8 @@ body {
 
 .sub-satellite {
     position: absolute; /* Positioned by JS */
-    width: 60px; /* Smaller than main satellites */
-    height: 60px;
+    width: 80px;
+    height: 80px;
     background: rgba(255, 255, 255, 0.95);
     border: 2px solid #555;
     color: #333;
@@ -223,8 +232,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 5px;
-    font-size: 10px; /* Smaller font */
+    padding: 4px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     transform: translate(-50%, -50%); /* Center on calculated position */
     z-index: 26; /* Higher than container */
@@ -248,4 +256,11 @@ body {
 /* Pause parent orbit when hovered */
 .node.paused {
     animation-play-state: paused !important; /* Use !important to override base animation */
+}
+
+/* Target the text *inside* the sub-satellite */
+.sub-satellite .node-content {
+    font-size: 10px; /* A tad larger */
+    line-height: 1.2;
+    font-weight: normal;
 } 
